@@ -8,7 +8,6 @@ const ManuItem = ({ item }) => {
             <div>
                 <h2 className="2xl">{name}-------</h2>
                 <p>{recipe}</p>
-
             </div>
             <div>
                 <p>${price}</p>

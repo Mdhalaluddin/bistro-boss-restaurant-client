@@ -11,7 +11,6 @@ const PopulerManus = () => {
         .then(data => {
             const popularItem = data.filter(item=> item.category === 'popular');
             setManus(popularItem)
-
             console.log(data)
         })
     },[])
@@ -23,10 +22,7 @@ const PopulerManus = () => {
             ></Heading>
             <div className="grid md:grid-cols-2 gap-6 my-10">
             {
-                manus.map(item => 
-                <ManuItem key={item._id} item={item}>
-
-                </ManuItem>)
+                manus.map(item => <ManuItem key={item._id} item={item}></ManuItem>)
             }
             </div>
         </section>
