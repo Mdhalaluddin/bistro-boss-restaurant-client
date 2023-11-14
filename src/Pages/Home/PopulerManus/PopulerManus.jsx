@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Heading from "../../../Components/Hadding/Heading";
-import ManuItem from "../../../Components/Hadding/ManuItem/ManuItem";
 
 
 const PopulerManus = () => {
@@ -21,9 +20,12 @@ const PopulerManus = () => {
             heading='FROM OUR MENU'
             ></Heading>
             <div className="grid md:grid-cols-2 gap-6 my-10">
-            {
+                {/* {
+                    manus.map(item => <ManuItem key={item._id} item={item}></ManuItem>)
+                } */}
+            {/* {
                 manus.map(item => <ManuItem key={item._id} item={item}></ManuItem>)
-            }
+            } */}
             </div>
         </section>
     );

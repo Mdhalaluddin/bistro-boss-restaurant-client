@@ -3,6 +3,7 @@ import Category from "../Category/Category";
 import Featured from "../Featured/Featured";
 import PageBanner from "../PageBanner/PageBanner";
 import PopulerManus from "../PopulerManus/PopulerManus";
+import Testimonial from "../Testimonial/Testimonial";
 
 
 const Home = () => {
@@ -13,6 +14,7 @@ const Home = () => {
            <PageBanner></PageBanner>
            <PopulerManus></PopulerManus>
            <Featured></Featured>
+           <Testimonial></Testimonial>
             
         </div>
     );
