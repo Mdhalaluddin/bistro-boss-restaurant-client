@@ -3,6 +3,8 @@ import Cover from '../../Pages/Home/Sheared/Cover/Cover';
 import menuImg from '../../assets/menu/banner3.jpg'
 import dessertImg from '../../assets/menu/dessert-bg.jpeg'
 import pizzaImg from '../../assets/menu/pizza-bg.jpg'
+import saladImg from '../../assets/menu/salad-bg.jpg'
+import soupImg from '../../assets/menu/soup-bg.jpg'
 import useMenu from '../../hooks/useMenu';
 import Heading from '../../Components/Hadding/Heading';
 import MainCategory from './MainCategory/MainCategory';
@@ -30,6 +32,12 @@ const Menu = () => {
             {/* PIZZA */}
             <Cover img={pizzaImg} title={'PIZZA'} ></Cover>
             <MainCategory items={pizza}></MainCategory>
+            {/* salad */}
+            <Cover img={saladImg} title={'SALAD'} ></Cover>
+            <MainCategory items={salad}></MainCategory>
+            {/* soup */}
+            <Cover img={soupImg} title={'SOUP'} ></Cover>
+            <MainCategory items={soup}></MainCategory>
 
         </div>
     );
