@@ -1,38 +1,19 @@
-import {
-    Card,
-    CardHeader,
-    CardBody,
-    CardFooter,
-    Typography,
-    Button,
-} from "@material-tailwind/react";
+
 
 const MenuCard = ({ item }) => {
     const { name, recipe, image, price } = item;
     return (
-        <Card className="w-96">
-            <CardHeader floated={false} className="h-80">
-                <img src={image} alt="profile-picture" />
-                <p className="bg-slate-800 text-white">${price}</p>
-            </CardHeader>
-            <CardBody className="text-center">
-                <Typography variant="h4" color="blue-gray" className="mb-2">
-                    {name}
-                </Typography>
-                <Typography color="blue-gray" className="font-medium" textGradient>
-                    {recipe}
-                </Typography>
-            </CardBody>
-            <CardFooter className="pt-0">
-        <Button
-          ripple={false}
-          fullWidth={true}
-          className="bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
-        >
-          Add to Cart
-        </Button>
-      </CardFooter>
-        </Card>
+        <div className="card w-96 bg-base-100 p-4 my-6 shadow-xl">
+            <figure><img src={image} alt="Shoes" /></figure>
+            <p className="bg-black text-white absolute right-0 px-2 py-1 mr-6 mt-4">$ {price}</p>
+            <div className="card-body items-center text-center">
+                <h2 className="card-title">{name}</h2>
+                <p>{recipe}</p>
+                <div className="card-actions my-2 justify-center">
+                    <button className="btn btn-outline border-b-4 border-0  text-xl btn-warning uppercase">add to cart</button>
+                </div>
+            </div>
+        </div>
     );
 };
 
