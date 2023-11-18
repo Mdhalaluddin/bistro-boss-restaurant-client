@@ -1,33 +1,42 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../../Provider/AuthProvider";
+import { FaShoppingCart } from 'react-icons/fa';
+import useCarts from "../../../../hooks/useCarts";
+
 
 
 const Navbar = () => {
-    const {user, LogOut} = useContext(AuthContext)
-    const handleLogoutBtn=()=>{
+    const { user, LogOut } = useContext(AuthContext);
+    const [cart] = useCarts();
+    const handleLogoutBtn = () => {
         LogOut()
-        .then(()=>{})
-        .catch(error=> console.log(error))
+            .then(() => { })
+            .catch(error => console.log(error))
     }
     const navOptions = <>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/menu'>menu</Link></li>
-        <li><Link to='/order'>Order</Link></li>
         <li><Link to='/signUp'>SingUP</Link></li>
         <li><Link to='/secret'>Secret</Link></li>
+        <li><Link to='/'>
+            <button className="btn btn-sm text-xl">
+                <FaShoppingCart />
+                <div className="badge  badge-secondary">+{cart?.length}</div>
+            </button>
+        </Link></li>
         {
-            user? 
-            <>
-            <div className="flex items-center gap-4">
-            <span className="text-yellow-400 font-bold">{user.displayName}</span>
-            <button onClick={handleLogoutBtn} className="btn btn-sm btn-outline btn-secondary">LogOut</button>
-            </div>
-            </> 
-            : 
-            <>
-            <li><Link to='/login'>Login</Link></li>
-            </>
+            user ?
+                <>
+                    <div className="flex items-center gap-4">
+                        <span className="text-yellow-400 font-bold">{user.displayName}</span>
+                        <button onClick={handleLogoutBtn} className="btn btn-sm btn-outline btn-secondary">LogOut</button>
+                    </div>
+                </>
+                :
+                <>
+                    <li><Link to='/login'>Login</Link></li>
+                </>
         }
 
     </>

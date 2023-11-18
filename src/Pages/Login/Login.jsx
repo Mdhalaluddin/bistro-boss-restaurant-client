@@ -13,6 +13,7 @@ const Login = () => {
     const { longIn } = useContext(AuthContext)
     const [disabled, setDisabled] = useState(true);
     const from = location.state?.from?.pathname || "/";
+    console.log('user location pathname', location.state);
 
     useEffect(() => {
         loadCaptchaEnginge(6);
