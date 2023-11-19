@@ -9,6 +9,8 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import PrivetRouter from "./PrivetRouter";
 import Secret from "../Pages/Home/Sheared/Secret/Secret";
+import Dashboard from "../Layout/Dashboard";
+import Cart from "../Pages/Dashboard/Cart/Cart";
 
 
  export const router = createBrowserRouter([
@@ -41,5 +43,15 @@ import Secret from "../Pages/Home/Sheared/Secret/Secret";
     {
       path: '/secret',
       element:<PrivetRouter><Secret></Secret></PrivetRouter>
+    },
+    {
+      path: 'dashboard',
+      element: <PrivetRouter><Dashboard></Dashboard></PrivetRouter>,
+      children: [
+        {
+          path: 'cart',
+          element: <Cart></Cart>
+        }
+      ]
     }
   ]); 

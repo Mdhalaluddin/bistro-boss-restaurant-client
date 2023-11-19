@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Provider/AuthProvider';
 import Swal from 'sweetalert2';
+import SocialIcon from '../../Components/Hadding/SocialIcon/SocialIcon';
 // import Swal from 'sweetalert2';
 
 const Login = () => {
@@ -100,6 +101,8 @@ const Login = () => {
                             </div>
                         </form>
                         <small className='text-center text-xs my-4'>Are you new? <Link to='/signUp'>SingUP</Link></small>
+                        <div className='divider'></div>
+                        <SocialIcon></SocialIcon>
                     </div>
                 </div>
             </div>

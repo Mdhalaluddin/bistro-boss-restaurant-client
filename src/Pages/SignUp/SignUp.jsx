@@ -5,10 +5,13 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../hooks/useAxiosPublic';
+import SocialIcon from '../../Components/Hadding/SocialIcon/SocialIcon';
 
 
 const SignUp = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
     const { createUser, updateUserProfile } = useContext(AuthContext)
     const {
         register,
@@ -21,17 +24,25 @@ const SignUp = () => {
             .then(result => {
                 const logged = result.user;
                 console.log(logged);
-
+                // user add mondoDB
                 updateUserProfile(data.name, data.photo)
                     .then(() => {
-                        console.log('user update profile');
-                        Swal.fire({
-                            title: "User crate successfully!",
-                            text: "You clicked the button!",
-                            icon: "success"
-                        });
-                        reset()
-                        navigate('/')
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                reset()
+                                if (res.data.insertedId) {
+                                    Swal.fire({
+                                        title: "User crate successfully!",
+                                        text: "You clicked the button!",
+                                        icon: "success"
+                                    });
+                                    navigate('/')
+                                }
+                            })
                     })
                     .catch(error => {
                         console.log(error);
@@ -103,6 +114,8 @@ const SignUp = () => {
                             </div>
                         </form>
                         <small className='text-center text-xs my-4'>Alrady have a account <Link to='/login'>Login</Link></small>
+                        <div className='divider'></div>
+                        <SocialIcon></SocialIcon>
                     </div>
                 </div>
             </div>
