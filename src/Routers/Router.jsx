@@ -11,6 +11,7 @@ import PrivetRouter from "./PrivetRouter";
 import Secret from "../Pages/Home/Sheared/Secret/Secret";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
+import AllUser from "../Pages/Dashboard/AllUser/AllUser";
 
 
  export const router = createBrowserRouter([
@@ -51,6 +52,12 @@ import Cart from "../Pages/Dashboard/Cart/Cart";
         {
           path: 'cart',
           element: <Cart></Cart>
+        },
+        // admin section
+        {
+          path: 'users',
+          element: <AllUser></AllUser>
+
         }
       ]
     }
