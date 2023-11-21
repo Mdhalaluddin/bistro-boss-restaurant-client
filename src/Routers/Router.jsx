@@ -12,6 +12,8 @@ import Secret from "../Pages/Home/Sheared/Secret/Secret";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../Pages/Dashboard/Cart/Cart";
 import AllUser from "../Pages/Dashboard/AllUser/AllUser";
+import AddItems from "../Pages/Dashboard/AddItem/AddItems";
+import AdminRouter from "./AdminRouter";
 
 
  export const router = createBrowserRouter([
@@ -55,8 +57,12 @@ import AllUser from "../Pages/Dashboard/AllUser/AllUser";
         },
         // admin section
         {
+          path: 'addItems',
+          element: <AdminRouter><AddItems></AddItems></AdminRouter>
+        },
+        {
           path: 'users',
-          element: <AllUser></AllUser>
+          element: <AdminRouter><AllUser></AllUser></AdminRouter>
 
         }
       ]

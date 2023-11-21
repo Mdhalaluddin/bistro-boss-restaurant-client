@@ -4,7 +4,8 @@ import { Triangle } from "react-loader-spinner";
 import useAdmin from "../hooks/useAdmin";
 
 
-const AdminRouter = (children) => {
+const AdminRouter = ({children}) => {
+
     const [isAdmin, isAdminLoading] = useAdmin()
     const location = useLocation()
     const { user, loading } = UseAuth();
