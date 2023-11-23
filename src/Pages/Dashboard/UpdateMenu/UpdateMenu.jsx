@@ -1,14 +1,14 @@
-import { useForm } from "react-hook-form";
+import { useLoaderData } from "react-router-dom";
 import Heading from "../../../Components/Hadding/Heading";
-import { FaUtensils } from "react-icons/fa";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useForm } from "react-hook-form";
 import useAxios from "../../../hooks/useAxios";
 import Swal from "sweetalert2";
-
 const img_hosting_key = import.meta.env.VITE_IMAGE_HOSTING;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`
 
-const AddItems = () => {
+const UpdateMenu = () => {
+    const { name, price, category, recipe, _id } = useLoaderData();
     const { register, handleSubmit, reset } = useForm();
     const axiosPublic = useAxiosPublic();
     const axiosSecure = useAxios()
@@ -28,39 +28,41 @@ const AddItems = () => {
                 price: parseFloat(data.price),
                 image: res.data.data.display_url
             }
-            const menuRes = await axiosSecure.post('/menu', menuItem)
+            const menuRes = await axiosSecure.patch(`/menu/${_id}`, menuItem)
             console.log(menuRes.data);
-            if (menuRes.data.insertedId) {
+            if (menuRes.data.modifiedCount> 0) {
                 reset()
                 Swal.fire({
                     icon: "success",
-                    title: `${data.name} added to cart`,
+                    title: `${data.name} Update to cart`,
                     showConfirmButton: false,
                     timer: 1500
-                  });
+                });
             }
         }
         console.log(res.data);
     }
     return (
         <div>
-            <Heading heading={"ADD AN ITEM"} subHeading={"What's new"}></Heading>
+            <div>
+                <Heading subHeading={'update menu'} heading={'UPDATE ITEM'}></Heading>
+            </div>
             <div className="p-20  m-10 bg-[#F3F3F3]">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">Recipe name*</span>
                         </label>
-                        <input type="text" {...register("name", { required: true })} placeholder="Recipe name" className="input input-bordered w-full" />
+                        <input type="text" defaultValue={name} {...register("name", { required: true })} placeholder="Recipe name" className="input input-bordered w-full" />
                     </div>
                     <div className="flex gap-4">
                         <div className="w-1/2">
                             <label className="label">
                                 <span className="label-text">Category*</span>
                             </label>
-                            <select defaultValue='default' {...register("category", { required: true })}
+                            <select defaultValue={category} {...register("category", { required: true })}
                                 className="select select-bordered w-full">
-                                <option disabled value='default'>Select a category</option>
+                                <option disabled>Select a category</option>
                                 <option value="pizza">Pizza</option>
                                 <option value="dessert">Dessert</option>
                                 <option value="salad">Salad</option>
@@ -72,7 +74,7 @@ const AddItems = () => {
                             <label className="label">
                                 <span className="label-text">Price*</span>
                             </label>
-                            <input type="number" {...register("price", { required: true })} placeholder="Price" className="input input-bordered w-full" />
+                            <input defaultValue={price} type="number" {...register("price", { required: true })} placeholder="Price" className="input input-bordered w-full" />
                         </div>
                     </div>
                     {/* text aria */}
@@ -80,11 +82,11 @@ const AddItems = () => {
                         <label className="label">
                             <span className="label-text">Recipe Details*</span>
                         </label>
-                        <textarea className="textarea textarea-bordered h-24" {...register("recipe", { required: true })} placeholder="Recipe Details"></textarea>
+                        <textarea className="textarea textarea-bordered h-24" defaultValue={recipe} {...register("recipe", { required: true })} placeholder="Recipe Details"></textarea>
                         <input {...register("image", { required: true })} type="file" className="file-input w-full max-w-xs my-4" />
                     </div>
                     <button className="btn bg-[#B58130] text-white btn-lg">
-                        Add Item <FaUtensils className="ml-4"></FaUtensils>
+                        Update Item menu
                     </button>
                 </form>
             </div>
@@ -92,4 +94,4 @@ const AddItems = () => {
     );
 };
 
-export default AddItems;
+export default UpdateMenu;

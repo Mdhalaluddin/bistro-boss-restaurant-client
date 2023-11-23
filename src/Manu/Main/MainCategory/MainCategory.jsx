@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import ManuItem from "../../../Components/Hadding/ManuItem/ManuItem";
-// import Cover from "../../../Pages/Home/Sheared/Cover/Cover";
 
 
 const MainCategory = ({ items, title}) => {
