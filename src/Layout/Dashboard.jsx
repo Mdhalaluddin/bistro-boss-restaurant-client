@@ -31,6 +31,9 @@ const Dashboard = () => {
                                     <NavLink to='/dashboard/manageBookings'><FaBook></FaBook>Manage bookings</NavLink>
                                 </li>
                                 <li>
+                                    <NavLink to='/dashboard/paymentHistory'><MdPayment />payment history</NavLink>
+                                </li>
+                                <li>
                                     <NavLink to='/dashboard/users'><FaUser />All Users</NavLink>
                                 </li>
                             </>
@@ -43,11 +46,14 @@ const Dashboard = () => {
                                     <NavLink to='/dashboard/reservation'><FaCalendar></FaCalendar>reservation</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/dashboard/payment'><MdPayment />payment history</NavLink>
+                                    <NavLink to='/dashboard/paymentHistory'><MdPayment />payment history</NavLink>
                                 </li>
 
                                 <li>
-                                    <NavLink to='/dashboard/cart'><FaShoppingCart></FaShoppingCart> My Cart ({cart.length})</NavLink>
+                                    <NavLink to='/dashboard/cart'><FaShoppingCart></FaShoppingCart> My Cart</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='cart'><FaShoppingCart></FaShoppingCart> My Cart ({cart.length})</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to='/dashboard/review'><MdOutlineFeedback />add review</NavLink>

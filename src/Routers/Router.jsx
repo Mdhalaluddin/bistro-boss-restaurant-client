@@ -17,6 +17,7 @@ import AdminRouter from "./AdminRouter";
 import ManegeItem from "../Pages/Dashboard/manegeItem/ManegeItem";
 import UpdateMenu from "../Pages/Dashboard/UpdateMenu/UpdateMenu";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../Pages/Dashboard/PaymentHistory/PaymentHistory";
 
 
 export const router = createBrowserRouter([
@@ -52,7 +53,7 @@ export const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <PrivetRouter><Dashboard></Dashboard></PrivetRouter>,
+    element: <Dashboard></Dashboard>,
     children: [
       {
         path: 'cart',
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
       {
         path: 'payment',
         element: <Payment></Payment>
+      },
+      {
+        path: 'paymentHistory',
+        element: <PaymentHistory></PaymentHistory>
       },
       // admin section
       {
