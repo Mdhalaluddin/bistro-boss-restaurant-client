@@ -5,7 +5,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 export const AuthContext = createContext(null)
 const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState(null);
     const axiosPublic = useAxiosPublic()
     const [loading, setLoading] = useState(true);
     const googleProvider = new GoogleAuthProvider();
@@ -24,19 +24,17 @@ const AuthProvider = ({ children }) => {
         setLoading(true);
         return signOut(auth);
     }
-
-    const updateUserProfile = (name, photo) => {
-        return updateProfile(auth.currentUser, {
-            displayName: name, photoURL: photo
-        })
-    }
     // google sign in
     const googleSignIn = () => {
         setLoading(true)
         return signInWithPopup(auth, googleProvider)
     }
 
-
+    const updateUserProfile = (name, photo) => {
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: photo
+        })
+    }
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, createUser => {
             setUser(createUser);
@@ -45,20 +43,23 @@ const AuthProvider = ({ children }) => {
                     email: createUser.email,
                 }
                 axiosPublic.post('/jwt', userInfo)
-                .then(res=>{
-                    if(res.data.token){
-                        localStorage.setItem('access-token', res.data.token)
-                    }
-                })
+                    .then(res => {
+                        if (res.data.token) {
+                            localStorage.setItem('access-token', res.data.token)
+                            setLoading(false)
+                        }
+
+                    })
 
                 // get token and store client
             }
             else {
                 // TODO: remove token (if token stored in the client site local storage, caching, in memory)
                 localStorage.removeItem('access-token')
+                setLoading(false)
             }
             console.log('create user', createUser);
-            setLoading(false)
+
         })
         return () => {
             return unsubscribe();

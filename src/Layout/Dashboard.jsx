@@ -9,6 +9,7 @@ import useAdmin from "../hooks/useAdmin";
 const Dashboard = () => {
     const [cart] = useCarts();
     const [isAdmin] = useAdmin();
+    console.log(isAdmin);
     return (
         <div className="flex">
             <div className="w-64 min-h-screen bg-[#D1A054]">
@@ -31,16 +32,13 @@ const Dashboard = () => {
                                     <NavLink to='/dashboard/manageBookings'><FaBook></FaBook>Manage bookings</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/dashboard/paymentHistory'><MdPayment />payment history</NavLink>
-                                </li>
-                                <li>
                                     <NavLink to='/dashboard/users'><FaUser />All Users</NavLink>
                                 </li>
                             </>
                             :
                             <>
                                 <li>
-                                    <NavLink to='/dashboard/home'><FaHome></FaHome>User Home</NavLink>
+                                    <NavLink to='/dashboard/userHome'><FaHome></FaHome>User Home</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to='/dashboard/reservation'><FaCalendar></FaCalendar>reservation</NavLink>
@@ -48,10 +46,7 @@ const Dashboard = () => {
                                 <li>
                                     <NavLink to='/dashboard/paymentHistory'><MdPayment />payment history</NavLink>
                                 </li>
-
-                                <li>
-                                    <NavLink to='/dashboard/cart'><FaShoppingCart></FaShoppingCart> My Cart</NavLink>
-                                </li>
+                                
                                 <li>
                                     <NavLink to='cart'><FaShoppingCart></FaShoppingCart> My Cart ({cart.length})</NavLink>
                                 </li>
